@@ -4,6 +4,7 @@ from logger import log_state, log_event
 from player import Player
 from asteroid import Asteroid
 from asteroidField import AsteroidField
+from Shot import Shot
 import sys
 def main():
     print(f"Starting Asteroids! with pygame version: {pygame.version.ver}")
@@ -20,9 +21,11 @@ def main():
     drawable = pygame.sprite.Group()
     updatable = pygame.sprite.Group()
     asteroids = pygame.sprite.Group()
+    shots = pygame.sprite.Group()
     Player.containers = (drawable, updatable)
     Asteroid.containers = (asteroids, updatable, drawable)
     AsteroidField.containers = (updatable)
+    Shot.containers = (updatable, drawable, shots)
     asteroid_field = AsteroidField()
     #game loop
 
