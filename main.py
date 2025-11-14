@@ -13,8 +13,10 @@ def main():
     timer = pygame.time.Clock()
     dt = 0
 
-    
-    
+    #organising drawable and updatable components into groups 
+    drawable = pygame.sprite.Group()
+    updatable = pygame.sprite.Group()
+    Player.containers = (drawable, updatable)
     #game loop
     isRunning = True
     player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
@@ -27,10 +29,13 @@ def main():
             if event.type == pygame.QUIT:
                 return
         log_state()
-        player.update(dt)
+        #player.update(dt)
+        updatable.update(dt)
         #sets the fill of the frame to a black colour 
         screen.fill("black")
-        player.draw(screen)
+        #player.draw(screen)
+        for item in drawable:
+            item.draw(screen)
         #refreshes the game's screen
         pygame.display.flip()
        
