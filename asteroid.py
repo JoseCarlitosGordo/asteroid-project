@@ -36,7 +36,7 @@ class Asteroid(CircleShape):
         return verts    
     def update(self, dt):
         #ties the speed of the object to the screen's framerate (every 0.017 seconds)
-        self.speed += 0.01
+        self.speed += 0.001
         self.position += self.velocity * dt *self.speed
         
     
