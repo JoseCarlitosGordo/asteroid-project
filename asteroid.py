@@ -10,7 +10,7 @@ class Asteroid(CircleShape):
         self.angle = 0.0
         self.speed = speed
         self.local_verts = self.generate_shape()
-    def draw(self, screen):
+    def draw(self, screen, camera_x = 0, camera_y = 0):
         #pygame.draw.circle(screen, "white", self.position, self.radius, LINE_WIDTH)
         ca = math.cos(math.radians(self.angle))
         sa = math.sin(math.radians(self.angle))
@@ -20,7 +20,7 @@ class Asteroid(CircleShape):
             rx = x * ca - y * sa
             ry = x * sa + y * ca
             pts.append((px + rx, py + ry))  # offset to world
-        pygame.draw.polygon(screen, "white", pts, LINE_WIDTH)
+        pygame.draw.polygon(screen, "white", [pygame.Vector2(x - camera_x, y - camera_y) for x, y in pts], LINE_WIDTH)
     
     def generate_shape(self):
         r = random

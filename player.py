@@ -17,8 +17,9 @@ class Player(CircleShape):
         c = self.position - forward * self.radius + right
         return [a, b, c]
     
-    def draw(self, screen):
-        pygame.draw.polygon(screen, "white", self.triangle(), LINE_WIDTH)
+    def draw(self, screen, camera_x = 0, camera_y = 0):
+        #converts world space coordinate into local coordinates relative to camera view
+        pygame.draw.polygon(screen, "white", [pygame.Vector2(p.x - camera_x, p.y - camera_y) for p in self.triangle()], LINE_WIDTH)
 
     def rotate(self, dt):
         self.rotation += PLAYER_TURN_SPEED * dt
