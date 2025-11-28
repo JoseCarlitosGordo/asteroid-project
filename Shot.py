@@ -7,7 +7,7 @@ class Shot(CircleShape):
     
     
     def draw(self, screen, camera_x = 0, camera_y = 0):
-        pygame.draw.circle(screen, "white", self.position, self.radius, LINE_WIDTH)
+        pygame.draw.circle(screen, "white", pygame.Vector2(self.position.x - camera_x, self.position.y - camera_y), self.radius, LINE_WIDTH)
     
     
     def update(self, dt):
